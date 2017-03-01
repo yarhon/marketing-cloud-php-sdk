@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/autoload.php"
+         colors="true"
+         convertErrorsToExceptions="true">
+
+    <php>
+        <const name="CLIENT_ID" value="..."/>
+        <const name="CLIENT_SECRET" value="..."/>
+
+        <const name="CAMPAIGN_NAME" value="..."/>
+        <const name="CAMPAIGN_FROM_EMAIL" value="..."/>
+        <const name="CAMPAIGN_FROM_NAME" value="..."/>
+        <const name="CAMPAIGN_SUBSCRIBERS" value="..."/> <!-- Comma separated list -->
+        <const name="CAMPAIGN_SUBJECT" value="..."/>
+        <const name="CAMPAIGN_BODY" value="..."/>
+
+        <const name="CAMPAIGN_DELIVERY_PROFILE" value="Default"/>
+        <const name="CAMPAIGN_SEND_WAIT_TIME" value="180"/> <!-- Time in seconds to wait after send before tracking events. -->
+    </php>
+
+    <testsuites>
+        <testsuite name="auth">
+            <file>./tests/AuthClientTest.php</file>
+        </testsuite>
+        <testsuite name="soap-one-object">
+            <file>./tests/SoapClientOneObjectTest.php</file>
+        </testsuite>
+        <testsuite name="soap-multiple-objects">
+            <file>./tests/SoapClientMultipleObjectsTest.php</file>
+        </testsuite>
+        <testsuite name="soap-utilities">
+            <file>./tests/SoapClientUtilitiesTest.php</file>
+        </testsuite>
+        <testsuite name="soap-configure">
+            <file>./tests/SoapClientConfigureTest.php</file>
+        </testsuite>
+        <testsuite name="soap-retrieve-more">
+            <file>./tests/SoapClientRetrieveMoreTest.php</file>
+        </testsuite>
+        <testsuite name="soap-send-email-workflow">
+            <file>./tests/SoapClientSendEmailWorkflowTest.php</file>
+        </testsuite>
+        <testsuite name="driver">
+            <file>./tests/DriverTest.php</file>
+        </testsuite>
+    </testsuites>
+
+</phpunit>
+
