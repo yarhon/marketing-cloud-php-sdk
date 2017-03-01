@@ -110,7 +110,7 @@ Example workflow to send email campaign using Driver:
 AuthClient is extracted in a separate class to be shared between SoapClient and RestClient (will be available in future releases). 
 
     
-**Constructor parameters:**
+#### Constructor parameters:
 - options (array). Available options:
     - clientId (string). Required.
     - clientSecret (string). Required.
@@ -124,7 +124,7 @@ AuthClient is extracted in a separate class to be shared between SoapClient and 
    
 ### SoapClient    
         
-**Constructor parameters:**
+#### Constructor parameters:
 - wsdl (string). Absolute path to WSDL file. If null, the bundled one (depending on wsdlInstance option) will be used.
 - options (array). Available options:
     - wsdlInstance (string). Instance of bundled WSDL to use.
@@ -137,7 +137,7 @@ AuthClient is extracted in a separate class to be shared between SoapClient and 
 
 #### Create method
 
-**Method arguments:**
+##### Method arguments:
 - objectType (string).
 - object (array). Object argument can be:
     - associative array with object's properties (one object mode).
@@ -145,7 +145,7 @@ AuthClient is extracted in a separate class to be shared between SoapClient and 
                  
 - upsert (bool). Only some objects support upsert.
 
-**Return value:**
+##### Return value:
 
 Object identifier or array of objects identifiers depending on $object argument.
 In case of multiple objects mode, indexes in returned array will correspond to indexes in $object argument.
@@ -153,8 +153,8 @@ In case of multiple objects mode, indexes in returned array will correspond to i
 On error, method will throw an instance of 
 DataProBoston\MarketingCloud\Exception\ClientException interface.
 
-See "Exceptions handling" for more information.         
-
+See "Exceptions handling" for more information.  
+<br/>
 >Note:
 >Marketing Cloud API uses two types of object's identifiers:
 >- Legacy identifier (ID, int).
@@ -168,7 +168,9 @@ See "Exceptions handling" for more information.
 >Currently, property name can be simply determined by create method return value - if it's an integer - than 
 property name is 'ID', if string - 'ObjectID'. 
 >
->Auto selecting correct identifier property is planned for future releases.
+>Auto selecting correct identifier property is planned for future releases.  
+
+<br/>
 
 >Note:
 >Marketing Cloud API uses special Configure method to create / update / delete PropertyDefinition and Role 
@@ -177,7 +179,7 @@ property name is 'ID', if string - 'ObjectID'.
 
 #### Update and Delete methods.
 
-**Method arguments:**
+##### Method arguments:
 - objectType (string).
 - object (array). Same format as in create method.  
                   For update method object identifier property should be specified alongside 
@@ -185,7 +187,7 @@ property name is 'ID', if string - 'ObjectID'.
                   For delete method object identifier property only is enough.  
                   Usage of other objects' properties instead of identifiers to select objects for update/delete is currently undetermined.
 
-**Return value:**
+##### Return value:
 
 No value is returned.
 
@@ -196,12 +198,12 @@ See "Exceptions handling" for more information.
 
 #### Perform method
 
-**Method arguments:**
+##### Method arguments:
 - objectType (string).
 - object (array). Same format as in create method. 
 - action (string). String 'start' is used in most cases, see <https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-apis.meta/mc-apis/perform.htm>
 
-**Return value:**
+##### Return value:
 
 Task identifier or array of tasks identifiers depending on $object argument.
 In case of multiple objects mode, indexes in returned array will correspond to indexes in $object argument.
@@ -213,7 +215,7 @@ See "Exceptions handling" for more information.
 
 #### Retrieve and RetrieveOne methods
 
-**Method arguments:**
+##### Method arguments:
 - objectType (string).
 - properties (array). Properties of object(s) to retrieve.
 - filters (array). 3-element numeric array, in 2 possible forms:
@@ -226,13 +228,13 @@ See "Exceptions handling" for more information.
        Retrieve only objects added/modified since last retrieve call with the same properties and filters.
 
 
-**Return value:**
+##### Return value:
 
 Array of \stdClass objects for Retrieve method, and object of \stdClass for RetrieveOne method.
 In case of no results, RetrieveOne method will return null. In case of more than 1 result, RetrieveOne method will throw 
 ResponseException exception.
 
-**Available filter operators:**
+##### Available filter operators:
 - =
 - !=
 - \>
@@ -247,7 +249,7 @@ ResponseException exception.
 - and
 - or
 
-**Usage:**
+##### Usage:
 
     $sendId = 11111;
     $startDate = new \DateTime();
@@ -270,18 +272,18 @@ Retrieve method returns max. 2500 objects at one call. To retrieve all objects, 
 using hasMoreResults() method and call retrieveMore(), if any. 
 
 
-**Method arguments:**
+##### Method arguments:
 
 - requestId (string|null). If not specified, the one from getLastRequestId() will be used.
                            In this case it's not possible to call other methods while iterating through results.
                            To be able to call other methods, one should obtain requestId using getLastRequestId()
                            and pass it to retrieveMore().
                            
-**Return value:**
+##### Return value:
                            
 Same as in Retrieve method.   
                         
-**Usage:**
+##### Usage:
 
     // without any other method calls
     $subscribers = $client->retrieve('Subscriber', ['ID']);    
@@ -321,7 +323,7 @@ This exception has 2 useful methods:
 
 
 
-**Usage:**
+##### Usage:
 
     try {
         $client->create('List', [
